@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+.box{
+	margin:0 auto;
+	display:block;
+}
+.nav_box{
+	padding-top:5px;
+	padding-left:5px;
+}
+.urlform{
+	padding-top:100px;
+}
+.site_nav{
+	
+}
+.site_nav a{
+	text-decoration: none;
+	color:#252525;
+	font-size:16px;
+	padding-left:5px;
+}
+.site_nav a:hover{
+	color:purple;
+	font-size:16px;
+}

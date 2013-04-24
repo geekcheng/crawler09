@@ -1,0 +1,44 @@
+.navbar-form{
+	padding-left:38px;
+}
+.navbar-form button{
+	margin-top:5px;
+}
+b{
+	font-weight:normal;
+	color:green;
+}
+.f{
+	padding-top:15px;
+	margin-left:40px;
+}
+.f p{
+	margin:0px;
+}
+.title{
+	font-size: 16px;
+}
+.preview{
+	height:80px;
+	overflow: hidden;
+}
+.append{
+	color:green;
+}
+.link{
+	width:400px;
+	overflow: hidden;
+	display:block;
+	float:left;
+}
+.intime{
+	width:100px;
+	display:block;
+	float:left;
+	padding-left:5px;
+}
+.pagebar{
+	padding-top:70px;
+	padding-left: 40px;
+}
+

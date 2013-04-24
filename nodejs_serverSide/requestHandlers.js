@@ -1,12 +1,7 @@
-/**
- * New node file
- */
-
-
 function saveData(response,datas){
-	console.log(datas);
+	console.log(">>>>>>>>>>"+decodeURIComponent(datas.replace(/\+/g,"")));
 	response.writeHead(200,{"Content-Type":"text/html"});
-	response.write("data saved."+datas);
+	response.write("data saved.");
 	response.end();
 }
 
@@ -24,7 +19,7 @@ console.log("start is active.");
     '</form>'+
     '</body>'+
     '</html>';
-    response.writeHead(200, {"Content-Type": "text/html"});
+    response.writeHead(200, {"Content-Type": "text/html;charset=utf-8"});
     response.write(body);
     response.end();
 }

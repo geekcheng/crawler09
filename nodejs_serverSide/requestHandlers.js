@@ -1,10 +1,18 @@
 function saveData(response,datas){
-	console.log(">>>>>>>>>>"+decodeURIComponent(datas.replace(/\+/g,"")));
+	//分割字符串，组装成json
+	var s= datas.split("&");
+	
+	var url=decodeURIComponent(s[0].toString().split("=")[1]);
+	var data=decodeURIComponent(s[1].toString().split("=")[1]);
+	var hrefs=decodeURIComponent(s[2].toString().split("=")[1]);
+	
+	var dataJ={"url":url,"data":decodeURIComponent(data),"hrefs":hrefs}
+	
+	
 	response.writeHead(200,{"Content-Type":"text/html"});
 	response.write("data saved.");
 	response.end();
 }
-
 function start(response){
 console.log("start is active.");
   var body = '<html>'+

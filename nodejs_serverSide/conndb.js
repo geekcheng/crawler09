@@ -6,7 +6,6 @@
     db_connector = new mongodb.Db("test", mongoserver,{native_parser:true,safe:false});
     db_connector.open(function(err,db){
  	db.collection('test',{safe:true},function(err,collection){
- 
  			if(!err){
      			collection.find({'name':'tompig'},function(err,result){
 				if (err) throw err;

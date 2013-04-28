@@ -1,11 +1,12 @@
 var page = require('webpage').create();
-//var url="http://toozhao.com/";
+var url="http://www.oschina.net/";
+//var seeds = require("./seeds");
+
 page.open(url, function(status) {
-//console.log("open at<-"+Date.now()+"->");
 	page.includeJs("http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js",function(){
 	var sss=page.evaluate(function() {
 		var st=Date.now();
-		var tc =document.body.innerText;
+		var tc = encodeURIComponent(document.body.innerText);
 		var href=window.location.href;
 		var ha=new Array();
 		
@@ -31,17 +32,17 @@ page.open(url, function(status) {
 				ha.push(cura);
 			}
 		}
+		var ss=ha.join(",");
 			$.ajax({
 				type: "POST",
 				url:"http://127.0.0.1:1337/ajax",
 				dataType:"json",
-				data:{"url":href,"data":tc,"suba":ha},
+				data:{"url":href,"data":tc,"suba":ss},
 				async:false
 			});
-						return href;
-  	
+						//return href;
 	    });
-	    console.log(sss);
+	    //console.log(sss);
 	    phantom.exit();
 	});
 

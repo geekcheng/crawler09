@@ -1,4 +1,5 @@
 var conndb = require("./conndb.js");
+var bufferhelper=require("./bufferhelper.js");
 function saveData(response,datas){
 	//分割字符串，组装成json
 	var s= datas.split("&");
@@ -35,5 +36,13 @@ console.log("start is active.");
     response.end();
 }
 
+function returnSeeds(response){
+	var seeds=conndb.getSeeds();
+	response.writeHead(200, {"Content-Type": "text/html;charset=utf-8"});
+    response.write(seeds);
+    response.end();
+}
+
 exports.saveData=saveData;
 exports.start=start;
+exports.returnSeeds=returnSeeds;

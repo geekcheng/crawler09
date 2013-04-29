@@ -1,14 +1,17 @@
+var conndb = require("./conndb.js");
 function saveData(response,datas){
 	//分割字符串，组装成json
 	var s= datas.split("&");
-	
+
 	var url=decodeURIComponent(s[0].toString().split("=")[1]);
 	var data=decodeURIComponent(s[1].toString().split("=")[1]);
+	//下面的url,data,hrefs应该用循环来取，可是s[2]有问题，有待优化
 	var hrefs=decodeURIComponent(s[2].toString().split("=")[1]);
+	var docs={"url":url,"c_page":decodeURIComponent(data)}
+	var seeds={"hrefs":hrefs};
 	
-	var dataJ={"url":url,"data":decodeURIComponent(data),"hrefs":hrefs}
-	
-	
+	conndb.saveDoc(docs);
+	conndb.saveSeeds(seeds);
 	response.writeHead(200,{"Content-Type":"text/html"});
 	response.write("data saved.");
 	response.end();

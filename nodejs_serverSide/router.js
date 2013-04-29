@@ -8,6 +8,8 @@ var handler= require("./requestHandlers");
 		handler.saveData(response,datas);
 	 }else if(pathname=="/start"){
 	 handler.start(response);
+	 }else if(pathname=="/seeds"){
+	 	handler.seeds(response);
 	 }
  
  }

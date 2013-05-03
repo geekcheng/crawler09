@@ -22,6 +22,7 @@ var mongodb = require("mongodb"),
      console.log("Connection to the database was start!");
     });
   }
+  
 //存储抓取的种子
 function saveSeeds(seeds){
     db_connector_seeds.open(function(err,db){
@@ -38,24 +39,25 @@ function saveSeeds(seeds){
     });
 }
 
-function getSeeds(){
-    db_connector_returnSeeds.open(function(err,db){
- 	db.collection('seeds',{safe:true},function(err,collection){
-//
-	var stream = collection.find().stream();
-	
-	//监听获取数据
-	 stream.on("data",function(item){
-	 console.log(item);
-	 });
-	
-	//当数据读取完毕时，执行的方法。
-	 stream.on("end",function(){
-		seeds=item;
-	 });
-//
-    });
-     });
+
+function getSeeds(sss){
+	db_connector_returnSeeds.open(function(err,db){
+	 	db.collection('seeds',{safe:true},function(err,collection){
+		//监听获取数据
+		 stream.on("data",function(item){
+		 console.log(item);
+		 });
+		
+		//当数据读取完毕时，执行的方法。
+		 stream.on("end",function(){
+		 sss=items;
+		 }
+	 	
+	 	});
+	});
+
+
+return sss;
 }
 
 

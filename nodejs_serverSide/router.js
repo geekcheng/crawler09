@@ -9,7 +9,8 @@ var handler= require("./requestHandlers");
 	 }else if(pathname=="/start"){
 	 handler.start(response);
 	 }else if(pathname=="/seeds"){
-	 	handler.returnSeeds(response);
+	 	//handler.returnSeeds(response);
+	 	handler.seed(response);
 	 }
  
  }

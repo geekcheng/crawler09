@@ -1,3 +1,4 @@
+var requestHandlers =require("./requestHandlers");
 var mongodb = require("mongodb"),
  	mongoserver_crawler = new mongodb.Server("127.0.0.1", 27017, auto_reconnect=true,poolSize=10,{timeou:30,encoding:'utf8'}),
  	mongoserver_seeds = new mongodb.Server("127.0.0.1", 27017, auto_reconnect=true,poolSize=10,{timeou:30,encoding:'utf8'}),
@@ -39,26 +40,22 @@ function saveSeeds(seeds){
     });
 }
 
-
-function getSeeds(sss){
+function getSeeds(response){
+	var dd;
 	db_connector_returnSeeds.open(function(err,db){
 	 	db.collection('seeds',{safe:true},function(err,collection){
-		//监听获取数据
-		 stream.on("data",function(item){
-		 console.log(item);
-		 });
-		
-		//当数据读取完毕时，执行的方法。
-		 stream.on("end",function(){
-		 sss=items;
-		 }
-	 	
-	 	});
+		var streams=collection.find().stream();
+			 streams.on("data",function(item){
+			 	dd=item;
+			 });
+			 streams.on("end",function(){
+			 console.log("end");
+		 	 });
+		});
 	});
-
-
-return sss;
-}
+	//此处用setTimeout代替先，可以使用promise模式进行优化
+	setTimeout(function(){requestHandlers.returnSeeds(response,dd);},3000);
+};
 
 
 exports.saveDoc = saveDoc;

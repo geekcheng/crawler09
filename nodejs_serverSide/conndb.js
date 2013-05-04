@@ -53,10 +53,9 @@ function getSeeds(response){
 		 	 });
 		});
 	});
-	//此处用setTimeout代替先，可以使用promise模式进行优化
+	//此处用setTimeout代替先，可以使用promise.js模式进行优化
 	setTimeout(function(){requestHandlers.returnSeeds(response,dd);},3000);
 };
-
 
 exports.saveDoc = saveDoc;
 exports.saveSeeds = saveSeeds;

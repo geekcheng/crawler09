@@ -17,10 +17,11 @@ var mongodb = require("mongodb"),
      			collection.insert(docs,function(err,result){
 				if (err) throw err;
 					console.log(result);
+					db.close();
  				});
  				}
 		});
-     console.log("Connection to the database was start!");
+     console.log("saveDoc was start!");
     });
   }
   
@@ -33,10 +34,12 @@ function saveSeeds(seeds){
      			collection.insert(seeds,function(err,result){
 				if (err) throw err;
 					console.log(result);
+										db.close();
  				});
  				}
 		});
-     console.log("Connection to the database was start!");
+     console.log("saveSeeds was start!");
+     db.close();
     });
 }
 
@@ -50,6 +53,7 @@ function getSeeds(response){
 			 });
 			 streams.on("end",function(){
 			 console.log("end");
+			 db.close();
 		 	 });
 		});
 	});

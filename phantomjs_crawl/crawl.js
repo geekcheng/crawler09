@@ -32,22 +32,18 @@ function crawlers(url){
 				}
 			}
 			var ss=ha.join(",");
-				$.ajax({
+				jQuery.ajax({
 					type: "POST",
 					url:"http://127.0.0.1:1337/ajax",
 					dataType:"json",
 					data:{"url":href,"data":tc,"suba":ss},
 					async:false
 				});
-							//return href;
 		    });
-		    //console.log(sss);
-		    phantom.exit();
+		    //phantom.exit();
 		});
 	
 	});
 }
 
-
-
-
+exports.crawlers=crawlers;

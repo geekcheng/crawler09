@@ -1,10 +1,10 @@
 var db = require("./mysqldb.js");
 function save(response,datas){
-
-	var s= datas.split("&");
-	var url=decodeURIComponent(s[0].toString().split("=")[1]);
-	var data=decodeURIComponent(s[1].toString().split("=")[1]);
-	var seeds = decodeURIComponent(s[2].toString().split("=")[1]);
+	var s= decodeURIComponent(decodeURIComponent(datas)).split("&")
+	
+	var url=s[0].toString().split("=")[1];
+	var data=s[1].toString().split("=")[1];
+	var seeds =s[2].toString().split("=")[1];
 
 	db.save(url,data,seeds);
 	response.writeHead(200,{"Content-Type":"text/html"});

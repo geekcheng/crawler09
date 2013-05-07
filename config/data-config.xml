@@ -1,0 +1,12 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource" driver="com.mysql.jdbc.Driver" 
+  	url="jdbc:mysql://localhost:3306/crawldata" user="root" password="qintengfei" batchSize="-1"/>
+  <document>
+    <entity name="crawldata" query="select id,href,data,crawltime from contents">
+    <field column="id" name="id"/>
+    <field column="href" name="href"/>
+    <field column="data" name="desc"/>
+    <field column="crawltime" name="time" />
+     </entity>
+  </document>
+</dataConfig>

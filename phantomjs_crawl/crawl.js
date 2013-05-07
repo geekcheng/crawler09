@@ -1,12 +1,11 @@
 var page = require('webpage').create();
 var system = require('system');
 var address=system.args[1];
-
+//.replace(/20%/g,"").replace(/E3%/g,"").replace(/0A%/g,"").replace(/80%/g,"")
 	page.open(address, function(status) {
 		page.includeJs("http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js",function(){
 		var sss=page.evaluate(function() {
-			var st=Date.now();
-			var tc = encodeURIComponent(document.body.innerText).replace(/%80/g,"").replace(/%E3/g,"").replace(/%20/g,"").replace(/%0A/g,"");
+			var tc = encodeURIComponent(document.body.innerText);
 			var href=window.location.href;
 			var ha=new Array();
 			

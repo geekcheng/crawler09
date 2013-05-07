@@ -1,7 +1,8 @@
 var page = require('webpage').create();
-//var url="http://www.oschina.net/";
-function crawlers(url){
-	page.open(url, function(status) {
+var system = require('system');
+var address=system.args[1];
+
+	page.open(address, function(status) {
 		page.includeJs("http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js",function(){
 		var sss=page.evaluate(function() {
 			var st=Date.now();
@@ -40,10 +41,7 @@ function crawlers(url){
 					async:false
 				});
 		    });
-		    //phantom.exit();
+		    phantom.exit();
 		});
 	
 	});
-}
-
-exports.crawlers=crawlers;

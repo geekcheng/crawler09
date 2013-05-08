@@ -11,6 +11,8 @@ function startCrawler(url){
 	    if (error !== null) {
 	      console.log('exec error: ' + error);
 	    }
+	}).on("close",function(){
+	console.log("aaaaaa,i will close!!");
 	});
 //}
 }

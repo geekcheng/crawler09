@@ -1,5 +1,8 @@
 var db = require("./mysqldb.js");
 function save(response,datas){
+	console.log("data is "+datas);
+//console.log(datas.split("&"));
+	
  	var seeds=decodeURIComponent(decodeURIComponent((datas.split("&")[2]).toString().split("=")[1].toString()));
  	var url=decodeURIComponent(decodeURIComponent((datas.split("&")[0]).toString().split("=")[1].toString()));
  	var data=decodeURIComponent(decodeURIComponent((datas.split("&")[1]).toString().split("=")[1].toString()));

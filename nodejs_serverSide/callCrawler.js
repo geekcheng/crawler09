@@ -8,3 +8,4 @@ var crawler = require("./crawler");
 		
 	crawl.seeds(crawler.startCrawler);
 	
+	

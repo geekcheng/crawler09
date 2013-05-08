@@ -29,9 +29,8 @@ function save(href,data,sub_url) {
 	    var sql="select seeds from seedsdata where flag='0'  limit 10 ";
 	    var sql2="update seedsdata set flag='1' where flag='0' limit 10";
     	db.query(sql).addListener('row', function(rs) {
-    	
-    		foo(rs);
-    		
+    	console.log("in mysqldb rs="+rs);
+    		foo(rs);	
    		 }).addListener('end', function(rr) {
    		 	db.query(sql2).on('result', function(r) {
      		 	console.log("has been update!!");

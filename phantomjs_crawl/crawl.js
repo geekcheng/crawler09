@@ -46,7 +46,5 @@ console.log("add="+address);
 		    });
 		    phantom.exit();
 		});
-
-
 	});
 	

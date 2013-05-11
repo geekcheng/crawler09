@@ -4,7 +4,7 @@
 window.onload = function(){
 	var bodyBox=document.body;
 	var nav=document.createElement("ul");
-	var navbar='<li><a class="brand" href="./addUrl.html">提交链接</a></li>'+
+	var navbar='<li><a class="brand" href="./addlink.html">提交链接</a></li>'+
 		'<li><a class="brand" href="./setting.html">抓取配置</a></li>'+
 	'<li><a class="brand" href="./search.html">搜索展示</a></li>'+
 	'<li><a class="brand" href="./result.html">搜索结果</a></li>'+
@@ -33,6 +33,9 @@ window.onload = function(){
     	break;
     	case "graphics":
     			ul.getElementsByTagName("li")[4].className="active";
+    	break;
+    	default:
+    			ul.getElementsByTagName("li")[0].className="active";
     	break;
 
 

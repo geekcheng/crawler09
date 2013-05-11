@@ -7,6 +7,6 @@ var crawler = require("./crawler");
 	server.startAll();
 		
 		//此处可以优化，可以监听子进程数量，当小于某一个值时reboot该函数。
-	setInterval(function(){crawl.seeds(crawler.startCrawler)},50000);//crawl.seeds(crawler.startCrawler);
+	setInterval(function(){crawl.seeds(crawler.startCrawler)},50000);//crawl.seeds(crawler.startCrawler);                                                                                                                        
 	
 	

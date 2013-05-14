@@ -1,24 +1,19 @@
 $(function(){
 	$(".add").click(function(){
-	var link=$(".urlwrite").val();
-	jQuery.ajax({
-		type: "POST",
-		url:"addLink.ac",
-		dataType:"jsonp",
-		data:{"url":link},
-		success:function(data){
-			alert(data);
-			if(data="success"){
-				$(".addSuccess").show();
-				
+		var link=$(".urlwrite").val();
+		$.ajax({
+			type: "POST",
+			url:"addLink.ac",
+			dataType:"string",
+			data:{"link":link},
+			success:function(data){
+				if(data="success"){
+					$(".addSuccess").show();
+				}
 			}
-		}
+		});
+		
 	});
-	
-	
-	});
-
-
 
 });
 

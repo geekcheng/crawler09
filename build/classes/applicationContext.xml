@@ -7,7 +7,6 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-	<!-- <context:component-scan base-package="com.devqin" /> -->
 	  
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -16,14 +15,48 @@
         <property name="password" value="qintengfei"/>
     </bean>
     
-	    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
-	        <property name="dataSource" ref="dataSource" />  
-	    </bean>  
-        <bean id="crawlDaoImpl" class="com.devqin.dao.crawlDaoImpl">  
-        	<property name="jdbcTemplate" ref="jdbcTemplate" />  
-    	</bean>
-        <bean id="webAction" class="com.devqin.Action.webAction">  
-        	<property name="cdi" ref="crawlDaoImpl" />  
-    	</bean>
-
+    
+     <bean id = "transactionManager" class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">   
+         <property name ="dataSource" ref="dataSource"/>   
+    </bean>
+    
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+          <property name="beanNames">
+              <list>
+                    <value>webAction</value>
+              </list>
+          </property>
+          <property name="interceptorNames">
+              <list>
+                  <value>transactionInterceptor</value>
+              </list>
+          </property>
+     </bean>
+    
+    
+      
+    <!--利用了拦截器的原理。-->     
+   <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">     
+        <property name="transactionManager" ref="transactionManager" />       
+    <!-- 配置事务属性 -->  
+   <property name="transactionAttributes">     
+        <props>     
+            <prop key="delete*">PROPAGATION_REQUIRED</prop>  
+            <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>     
+            <prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>     
+            <prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>     
+            <prop key="save*">PROPAGATION_REQUIRED</prop>     
+            <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>     
+       </props>     
+   </property>     
+   </bean> 
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>  
+       <bean id="crawlDaoImpl" class="com.devqin.dao.crawlDaoImpl">
+       	<property name="jdbcTemplate" ref="jdbcTemplate" />  
+   	</bean>
+       <bean id="webAction" class="com.devqin.Action.webAction">
+       	<property name="cdi" ref="crawlDaoImpl" />  
+   	</bean>
 </beans>

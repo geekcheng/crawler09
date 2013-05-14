@@ -21,13 +21,17 @@ public class webAction {
 		this.cdi = cdi;
 	}
 
+	public crawlDaoImpl getCdi() {
+		return cdi;
+	}
+
 	//添加链接
  	@RequestMapping("/addLink.ac")
  	@ResponseBody
 	public String addLink(@RequestParam String link) {
- 		String insert = cdi.addLink(link);
- 		System.out.println(link);
- 		if(insert=="true"){
+ 		Boolean insert = cdi.addLink(link);
+ 		
+ 		if(insert){
  			return "success";
  		}else{
  			return "error";

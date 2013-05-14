@@ -1,5 +1,5 @@
 var mysql = require('mysql-native');
-
+//function 定义一个匿名函数，createConnection指向这个匿名函数，使用module.exports导出这个函数为一个模块
 module.exports.createConnection = function()     
 {
     var db = mysql.createTCPClient(); 

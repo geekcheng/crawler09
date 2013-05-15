@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.devqin.beans.link;
-import com.devqin.beans.sRes;
 import com.devqin.dao.crawlDaoImpl;
 
 @Controller
@@ -39,20 +37,15 @@ public class webAction {
 	}
 	
 	//展示给用户提交的链接的url的抓取结果
- 	@RequestMapping("/showTou")
-	public String showToUser(sRes sres) {
-		return null;
-	} 
+ 	//@RequestMapping("/showTou")
+	//public String showToUser(sRes sres) {
+	//	return null;
+	//} 
 	
 	//搜索功能
  	@RequestMapping("/showTou")
 	public String search(String keyWords) {
 		return null;
-	}
-	
-	//数据去重
- 	@RequestMapping("/showTou")
-	public void delRepeat() {
 	}
 	 
 }

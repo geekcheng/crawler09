@@ -7,10 +7,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext; 
-
-import com.devqin.beans.link;
-import com.devqin.beans.sRes;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class crawlDaoImpl{
 
@@ -29,23 +26,23 @@ public class crawlDaoImpl{
 		String _link ='"'+link+'"';
 		String sql = "INSERT INTO `crawldata`.`seedsdata` (`seeds`, `flag`, `souce`) VALUES (?, '0', 'u')";
 		jdbcTemplate.update(sql,_link);
-		return true;
-		
+		String sql2 = "create table tmp as select max(id) as clo1 from seedsdata group by seeds";
+		String sql3="delete from seedsdata where id not in (select clo1 from tmp)";
+		String sql4="drop table tmp";
+		jdbcTemplate.execute(sql2);
+		jdbcTemplate.update(sql3);
+		jdbcTemplate.execute(sql4);
+		return true;	
 	}
 
-	public String showToUser(sRes sres) {
+	//public String showToUser(sRes sres) {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		//return null;
+	//}
 
 	public String search(String keyWords) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public void delRepeat() {
-		// TODO Auto-generated method stub
-		
 	}
     
 

@@ -1,5 +1,6 @@
 package com.devqin.Action;
 
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,16 +37,16 @@ public class webAction {
  		}
 	}
 	
-	//展示给用户提交的链接的url的抓取结果
- 	//@RequestMapping("/showTou")
-	//public String showToUser(sRes sres) {
-	//	return null;
-	//} 
-	
 	//搜索功能
  	@RequestMapping("/showTou")
 	public String search(String keyWords) {
-		return null;
+		try {
+			cdi.search(keyWords);
+		} catch (SolrServerException e) {
+			e.printStackTrace();
+		}
+		return "addlink.html" ;
+		
 	}
 	 
 }

@@ -8,6 +8,7 @@ console.log("add="+address);
 		
 			var tc = encodeURIComponent(document.body.innerText).replace(/%0A/g,"").replace(/%20/g,"");
 			var domain=document.domain;
+			var title=encodeURIComponent(document.title).replace(/%2B/g,"").replace(/%20/g,"");
 			var ha=new Array();
 			var addr = document.URL; 
 
@@ -39,7 +40,7 @@ console.log("add="+address);
 					type: "POST",
 					url:"http://127.0.0.1:1337/ajax",
 					dataType:"json",
-					data:{"url":addr,"data":tc,"suba":ss},
+					data:{"url":addr,"data":tc,"suba":ss,"title":title},
 					async:false
 				});
 				//return address;

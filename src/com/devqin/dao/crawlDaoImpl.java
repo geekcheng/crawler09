@@ -1,13 +1,13 @@
 package com.devqin.dao;
-import java.util.List;
-
-import javax.sql.DataSource;
-
-
-import org.springframework.jdbc.core.JdbcTemplate;  
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.params.ModifiableSolrParams;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 public class crawlDaoImpl{
 
@@ -34,15 +34,27 @@ public class crawlDaoImpl{
 		jdbcTemplate.execute(sql4);
 		return true;	
 	}
-
-	//public String showToUser(sRes sres) {
-		// TODO Auto-generated method stub
-		//return null;
-	//}
-
-	public String search(String keyWords) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public void search(String keyWords) throws SolrServerException {
+		HttpSolrServer server = new  HttpSolrServer("http://localhost:8080/solr-4.2.1/collection1/");
+		ModifiableSolrParams params = new ModifiableSolrParams();
+	    params.set("qt", "/select");
+	    params.set("q","desc:"+keyWords);
+        params.set("start", 0);
+        params.set("rows", 5);
+	    params.set("wt","json");
+	    QueryResponse response = server.query(params);
+	    SolrDocumentList docs = response.getResults();
+        System.out.println("文档个数：" + docs.getNumFound());
+        System.out.println("查询时间：" + response.getQTime());
+        for(SolrDocument doc:response.getResults())  
+        {  
+            System.out.println("id: " + doc.getFieldValue("id").toString());  
+            System.out.println("desc: " + doc.getFieldValue("desc").toString()+"\n");
+            System.out.println("href: " + doc.getFieldValue("href").toString()+"\n");
+            System.out.println("time: " + doc.getFieldValue("time").toString()+"\n");
+            System.out.println("title: " + doc.getFieldValue("title").toString()+"\n");  
+        } 
 	}
     
 

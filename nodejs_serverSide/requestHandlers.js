@@ -1,21 +1,14 @@
 var db = require("./mysqldb.js");
 function save(response,datas){
 	console.log("data is "+datas);
-//console.log(datas.split("&"));
 	
  	var seeds=decodeURIComponent(decodeURIComponent((datas.split("&")[2]).toString().split("=")[1].toString()));
  	var url=decodeURIComponent(decodeURIComponent((datas.split("&")[0]).toString().split("=")[1].toString()));
  	var data=decodeURIComponent(decodeURIComponent((datas.split("&")[1]).toString().split("=")[1].toString()));
- 	//console.log("_s"+_s);
-	//var s= decodeURIComponent(decodeURIComponent(datas)).split("&");
-
-	//var url=s[0].toString().split("=")[1];
-	//var data=s[1].toString().split("=")[1];
-	//var seeds =s[2].toString().split("=")[1];
-	//var seeds =_s;
+ 	var title=decodeURIComponent(decodeURIComponent((datas.split("&")[3]).toString().split("=")[1].toString()));
 	
 
-	db.save(url,data,seeds);
+	db.save(url,data,title);
 	db.saveSeeds(seeds);
 	response.writeHead(200,{"Content-Type":"text/html"});
 	response.write("data saved.");

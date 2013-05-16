@@ -5,7 +5,7 @@ window.onload = function(){
 	var bodyBox=document.body;
 	var nav=document.createElement("ul");
 	var navbar='<li><a class="brand" href="./addlink.html">提交链接</a></li>'+
-		'<li><a class="brand" href="./setting.html">抓取配置</a></li>'+
+	'<li><a class="brand" href="./setting.html">抓取配置</a></li>'+
 	'<li><a class="brand" href="./search.html">搜索展示</a></li>'+
 	'<li><a class="brand" href="./result.html">搜索结果</a></li>'+
 	'<li><a class="brand" href="./graphics.html">数据图形化</a></li>';

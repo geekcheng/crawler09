@@ -1,9 +1,13 @@
 package com.devqin.Action;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
+import net.sf.json.JSON;
+
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,15 +42,10 @@ public class webAction {
 	}
 	
 	//搜索功能
- 	@RequestMapping("/showTou")
-	public String search(String keyWords) {
-		try {
-			cdi.search(keyWords);
-		} catch (SolrServerException e) {
-			e.printStackTrace();
-		}
-		return "addlink.html" ;
-		
-	}
+ 	@RequestMapping("/showTou.ac")
+ 	@ResponseBody
+	public String search(@RequestParam String keyWords) throws UnsupportedEncodingException, SolrServerException {
+ 		return  cdi.search(URLDecoder.decode(keyWords,"utf-8"));
 	 
+}
 }

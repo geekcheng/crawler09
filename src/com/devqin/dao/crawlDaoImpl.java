@@ -1,13 +1,26 @@
 package com.devqin.dao;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.apache.noggit.JSONParser;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.params.ModifiableSolrParams;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
 
 public class crawlDaoImpl{
 
@@ -35,7 +48,7 @@ public class crawlDaoImpl{
 		return true;	
 	}
 	
-	public void search(String keyWords) throws SolrServerException {
+	public String search(String keyWords) throws SolrServerException {
 		HttpSolrServer server = new  HttpSolrServer("http://localhost:8080/solr-4.2.1/collection1/");
 		ModifiableSolrParams params = new ModifiableSolrParams();
 	    params.set("qt", "/select");
@@ -47,14 +60,7 @@ public class crawlDaoImpl{
 	    SolrDocumentList docs = response.getResults();
         System.out.println("文档个数：" + docs.getNumFound());
         System.out.println("查询时间：" + response.getQTime());
-        for(SolrDocument doc:response.getResults())  
-        {  
-            System.out.println("id: " + doc.getFieldValue("id").toString());  
-            System.out.println("desc: " + doc.getFieldValue("desc").toString()+"\n");
-            System.out.println("href: " + doc.getFieldValue("href").toString()+"\n");
-            System.out.println("time: " + doc.getFieldValue("time").toString()+"\n");
-            System.out.println("title: " + doc.getFieldValue("title").toString()+"\n");  
-        } 
+        return docs.toString();
 	}
     
 

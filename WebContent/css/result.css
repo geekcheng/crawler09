@@ -17,22 +17,28 @@ b{
 }
 .title{
 	font-size: 16px;
+	text-decoration: underline;
 }
 .preview{
-	height:80px;
 	overflow: hidden;
+	word-break: break-all;
+	display:block;
+	margin-top:5px !important;
+	margin-bottom:2px;
 }
 .append{
 	color:green;
 }
 .link{
-	width:400px;
+	width:350px;
+	height:20px;
 	overflow: hidden;
 	display:block;
 	float:left;
+	text-overflow:ellipsis; 
 }
 .intime{
-	width:100px;
+	width:160px;
 	display:block;
 	float:left;
 	padding-left:5px;

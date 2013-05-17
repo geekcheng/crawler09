@@ -1,8 +1,7 @@
 $(function(){
 	var keywords=(document.URL).split("=")[1];
+	$(".key").attr("value",decodeURI(keywords));
 	var start=0;
-	
-	
 	$.ajax({
 		type:'post',
 		url:'http://localhost:8080/solr-4.2.1/collection1/select?q=desc:'+keywords+'&start='+start+'&rows=10&wt=json&indent=true',
@@ -25,5 +24,10 @@ $(function(){
 		}
 		}
 	});
+});
+
+$(".search").click(function(){
+	var keywords=$(".key").val();
+	window.location.href="result.html?keyWord="+keywords;
 });
 

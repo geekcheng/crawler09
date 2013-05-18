@@ -40,7 +40,7 @@ console.log("add="+address);
 					type: "POST",
 					url:"http://127.0.0.1:1337/ajax",
 					dataType:"json",
-					data:{"url":addr,"data":tc,"suba":ss,"title":title},
+					data:{"url":addr,"data":tc,"suba":ss,"title":title,"domain":domain},
 					async:false
 				});
 				//return address;

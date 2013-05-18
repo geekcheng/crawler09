@@ -48,19 +48,11 @@ public class crawlDaoImpl{
 		return true;	
 	}
 	
-	public String search(String keyWords) throws SolrServerException {
-		HttpSolrServer server = new  HttpSolrServer("http://localhost:8080/solr-4.2.1/collection1/");
-		ModifiableSolrParams params = new ModifiableSolrParams();
-	    params.set("qt", "/select");
-	    params.set("q","desc:"+keyWords);
-        params.set("start", 0);
-        params.set("rows", 5);
-	    params.set("wt","json");
-	    QueryResponse response = server.query(params);
-	    SolrDocumentList docs = response.getResults();
-        System.out.println("文档个数：" + docs.getNumFound());
-        System.out.println("查询时间：" + response.getQTime());
-        return docs.toString();
+//设置
+	public String set(){
+		
+		
+		return "success";
 	}
     
 

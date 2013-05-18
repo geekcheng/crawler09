@@ -33,19 +33,17 @@ public class webAction {
  	@ResponseBody
 	public String addLink(@RequestParam String link) {
  		Boolean insert = cdi.addLink(link);
- 		
  		if(insert){
  			return "success";
  		}else{
  			return "error";
  		}
 	}
+ 	//设置
+ 	public String set(){
+ 		
+ 		return "success";
+ 	}
 	
-	//搜索功能
- 	@RequestMapping("/showTou.ac")
- 	@ResponseBody
-	public String search(@RequestParam String keyWords) throws UnsupportedEncodingException, SolrServerException {
- 		return  cdi.search(URLDecoder.decode(keyWords,"utf-8"));
-	 
-}
+
 }

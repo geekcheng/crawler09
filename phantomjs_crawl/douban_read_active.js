@@ -1,12 +1,14 @@
 var page = require('webpage').create();
 var system = require('system');
 var address = system.args[1];
+console.log("add="+address);
 	page.open(address, function(status) {
 		page.includeJs("http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js",function(){
 		var sss=page.evaluate(function() {
 		
 			var tc = encodeURIComponent(document.body.innerText).replace(/%0A/g,"").replace(/%20/g,"");
 			var domain=document.domain;
+			var title=encodeURIComponent(document.title).replace(/%2B/g,"").replace(/%20/g,"");
 			var ha=new Array();
 			var addr = document.URL; 
 
@@ -38,7 +40,7 @@ var address = system.args[1];
 					type: "POST",
 					url:"http://127.0.0.1:1337/ajax",
 					dataType:"json",
-					data:{"url":addr,"data":tc,"suba":ss},
+					data:{"url":addr,"data":tc,"suba":ss,"title":title},
 					async:false
 				});
 				//return address;

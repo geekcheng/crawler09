@@ -40,9 +40,16 @@ public class webAction {
  		}
 	}
  	//设置
- 	public String set(){
- 		
- 		return "success";
+	//添加链接
+ 	@RequestMapping("/set.ac")
+ 	@ResponseBody
+ 	public String set(@RequestParam String domain){
+ 		Boolean set = cdi.set(domain);
+ 		if(set){
+ 			return "success";
+ 		}else{
+ 			return "error";
+ 		}
  	}
 	
 

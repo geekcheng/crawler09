@@ -49,10 +49,11 @@ public class crawlDaoImpl{
 	}
 	
 //设置
-	public String set(){
-		
-		
-		return "success";
+	public boolean set(String domain){
+		System.out.println(domain);
+		String sql = "update `crawldata`.`seedsdata` set realstatus='0' where domain=?";
+		jdbcTemplate.update(sql,domain);
+		return true;
 	}
     
 

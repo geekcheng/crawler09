@@ -1,8 +1,6 @@
 var page = require('webpage').create();
 var system = require('system');
-var address = system.args[1];
-console.log("add="+address);
-	page.open(address, function(status) {
+	page.open(system.args[1], function(status) {
 		page.includeJs("http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js",function(){
 		var sss=page.evaluate(function() {
 		

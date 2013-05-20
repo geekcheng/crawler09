@@ -40,7 +40,6 @@ public class webAction {
  		}
 	}
  	//设置
-	//添加链接
  	@RequestMapping("/set.ac")
  	@ResponseBody
  	public String set(@RequestParam String domain){

@@ -5,6 +5,8 @@ var handler= require("./requestHandlers");
 		handler.save(response,datas);
 	 }else if(pathname=="/start"){
 	 handler.start(response);
+	 }else if(pathname=="/da"){
+	 	handler.da(response,datas);
 	 }
  
  }

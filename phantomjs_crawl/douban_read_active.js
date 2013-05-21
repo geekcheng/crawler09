@@ -75,14 +75,26 @@ console.log("add="+address);
 		var press_time=pubs[3];
 		var price=pubs[4];
 		
+		var booknames=encodeURIComponent(bookname.join(";")).replace(/%0A/g,"").replace(/%20/g,"");
+		var authors=encodeURIComponent(author.join(";")).replace(/%0A/g,"").replace(/%20/g,"");
+		var translators=encodeURIComponent(translator.join(";")).replace(/%0A/g,"").replace(/%20/g,"");
+		var presss=encodeURIComponent(press.join(";")).replace(/%0A/g,"").replace(/%20/g,"");
+		var press_times=encodeURIComponent(press_time.join(";")).replace(/%0A/g,"").replace(/%20/g,"");
+		var prices=encodeURIComponent(price.join(";")).replace(/%0A/g,"").replace(/%20/g,"");
+		var scores=encodeURIComponent(score.join(";")).replace(/%0A/g,"").replace(/%20/g,"");
+		var tags=encodeURIComponent(tag).replace(/%0A/g,"").replace(/%20/g,"");
+		var img_urls=encodeURIComponent(img_url.join(";")).replace(/%0A/g,"").replace(/%20/g,"");
+		var urls=encodeURIComponent(url).replace(/%0A/g,"").replace(/%20/g,"");
+		
+		
 		//把获得的数据封装成数组
 				jQuery.ajax({
 					type: "POST",
 					url:"http://127.0.0.1:1337/da",
 					dataType:"json",
 					data:{
-					"bookname":bookname,"author":author,"translator":translator,"press":press,
-					"press_time":press_time,"price":price,"score":score,"tag":tag,"img_url":img_url,"url":url},
+					"bookname":booknames,"author":authors,"translator":translators,"press":presss,
+					"press_time":press_times,"price":prices,"score":scores,"tag":tags,"img_url":img_urls,"url":urls},
 					async:false
 				});
 				//return address;

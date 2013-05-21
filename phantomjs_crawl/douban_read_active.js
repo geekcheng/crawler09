@@ -5,42 +5,84 @@ console.log("add="+address);
 	page.open(address, function(status) {
 		page.includeJs("http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js",function(){
 		var sss=page.evaluate(function() {
-		
-			var tc = encodeURIComponent(document.body.innerText).replace(/%0A/g,"").replace(/%20/g,"");
-			var domain=document.domain;
-			var title=encodeURIComponent(document.title).replace(/%2B/g,"").replace(/%20/g,"");
-			var ha=new Array();
-			var addr = document.URL; 
-
-			//对取得的a标签提纯
-			var as=function newa(){
-					var old_a=document.getElementsByTagName("a");
-					var new_a=new Array();
-					var lens = old_a.length;
-					for(var i=0;i<lens;i++){
-						if(old_a.item(i).getAttribute("href")!=null){
-							new_a.push(old_a.item(i));
-						}
-					};
-						return new_a;
-				}();
-
-			var len = as.length;
-			for(var i=0;i<len;i++){
-				var cura=as[i].getAttribute("href");
-				if(as[i].getAttribute("href").indexOf("http")=="0"){
-						ha.push('"'+cura+'"');
-					
-				}else if(as[i].getAttribute("href").indexOf("/")=="0"){
-					ha.push('"http://'+domain+cura+'"');
-				}
+		//bookname,author,translator,press,press_time,price,score,tag,img_url,url
+		var info=$(".info");
+		var pub=$(".info .pub");
+		var nbg=$(".nbg img");
+		var tag=$("#content h1").text().split(":")[1].toString();
+		var url=document.URL;
+		var rating_nums=$(".info .star .rating_nums");
+		var score=function(){
+			var ss=[];
+			for(var i=0;i<19;i++){
+			ss.push(rating_nums.eq(i).text());
+			};
+			return ss;
+		}();
+		var img_url=function(){
+			var imgs=new Array();
+			for(var i=0;i<19;i++){
+				imgs.push(nbg.eq(i).attr("src"));
 			}
-			var ss=ha.join(",");
+			return imgs;
+		
+		
+		}();
+		
+		//获取书名
+		var bookname=function(){
+			var names=[];
+			for(var i=0;i<19;i++){
+				names.push(info.find("h2").find("a").eq(i).attr("title"));
+			}
+				return names;
+		}();
+		//取得 作者 翻译者 出版社 出版时间 售价的信息
+		var pubs = function(){
+			var all=[];
+			var author=[];
+			var translator=[];
+			var press=[];
+			var press_time=[];
+			var price=[];
+			
+			for(var i=0;i<19;i++){
+				var data=pub.eq(i).text().split("/");
+				var size=data.length;
+				
+				//如果size=4，说明没有翻译者，否则翻译者是第一位
+				
+				if(size==4){
+					translator.push("N");
+					author.push(data[0]);
+					press.push(data[1]);
+					press_time.push(data[2]);
+					price.push(data[3]);
+				}else{
+					translator.push(data[0]);
+					author.push(data[1]);
+					press.push(data[2]);
+					press_time.push(data[3]);
+					price.push(data[4]);
+				}
+			}			
+			all.push(translator,author,press,press_time,price);
+			return all;
+		}();
+		var translator=pubs[0];
+		var author=pubs[1];
+		var press=pubs[2];
+		var press_time=pubs[3];
+		var price=pubs[4];
+		
+		//把获得的数据封装成数组
 				jQuery.ajax({
 					type: "POST",
-					url:"http://127.0.0.1:1337/ajax",
+					url:"http://127.0.0.1:1337/da",
 					dataType:"json",
-					data:{"url":addr,"data":tc,"suba":ss,"title":title},
+					data:{
+					"bookname":bookname,"author":author,"translator":translator,"press":press,
+					"press_time":press_time,"price":price,"score":score,"tag":tag,"img_url":img_url,"url":url},
 					async:false
 				});
 				//return address;
